@@ -1,0 +1,13 @@
+# Ignore everything by default:
+*
+
+# Whitelist by file extension...
+!**/
+!*.ts
+!*.js
+!*.json
+
+# Override and explicitly ignore...
+**/node_modules/
+**/lib/
+**/metadata.json

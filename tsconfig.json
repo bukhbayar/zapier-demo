@@ -1,0 +1,23 @@
+{
+    "include": ["src/**/*.ts"],
+    "exclude": ["lib/*"],
+    "compilerOptions": {
+        "target": "ES2018",
+        "module": "commonjs",
+        "lib": ["es2016", "es2017.object", "es2017.string"],
+        "declaration": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "strictNullChecks": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "outDir": "lib",
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": false,
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "experimentalDecorators": true,
+        "strictPropertyInitialization": false,
+        "types": ["node", "mocha"]
+    }
+}
