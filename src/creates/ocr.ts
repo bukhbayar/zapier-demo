@@ -3,21 +3,25 @@ import fs = require('fs')
 import FormData = require('form-data')
 
 const perform = async (z: ZObject, bundle: Bundle) => {
-    const stream = fs.createReadStream('/Users/bukhbayar.purevsuren/Downloads/test-image.jpg')
-
+    const stream = fs.createReadStream(bundle.inputData.file)
     const form = new FormData()
+
     form.append('filename', bundle.inputData.filename)
     form.append('file', stream)
 
+    stream.resume()
+
     const response = await z.request({
-        method: 'POST',
         url: 'http://enod.ddns.net:8079/ocr',
+        method: 'POST',
         headers: {
-            'content-type': 'multipart/form-data'
+            // 'Content-Type': 'multipart/form-data'
         },
         body: form
     })
-    return response.data
+
+    const content = z.JSON.parse(response.content.slice(1, -1))
+    return content
 }
 
 export default {
@@ -25,8 +29,8 @@ export default {
     noun: 'Model',
 
     display: {
-        label: 'New Model',
-        description: 'Triggers when a new OCR model is called.'
+        label: 'Call OCR model',
+        description: 'Call OCR model.'
     },
 
     operation: {
@@ -43,7 +47,7 @@ export default {
         sample: {
             id: '1',
             filename: 'test-image.jpg',
-            file: '/Users/bukhbayar.purevsuren/Downloads/test-image.jpg'
+            file: '/file.jpg'
         }
     }
 }

@@ -87,7 +87,7 @@ module.exports = {
 
     // A preset that is used as a base for Jest's configuration
     preset: 'ts-jest',
-
+    testTimeout: 20000,
     // Run tests from one or more projects
     // projects: undefined,
 
@@ -145,12 +145,10 @@ module.exports = {
     // testLocationInResults: false,
 
     // The glob patterns Jest uses to detect test files
-    testMatch: ['**/test/**/*.jest.[jt]s']
+    testMatch: ['**/test/**/*.test.[jt]s'],
 
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-    // testPathIgnorePatterns: [
-    //   "/node_modules/"
-    // ],
+    testPathIgnorePatterns: ['/node_modules/']
 
     // The regexp pattern or array of patterns that Jest uses to detect test files
     // testRegex: [],

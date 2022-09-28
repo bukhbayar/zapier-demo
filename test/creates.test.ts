@@ -1,23 +1,26 @@
 /* globals describe, expect, test */
 
 import { createAppTester, tools } from 'zapier-platform-core'
-import { afterAll, beforeAll, describe, expect, it } from '@jest/globals'
-
+import { describe, expect } from '@jest/globals'
 import App from '../src/index'
+import path = require('path')
 
 const appTester = createAppTester(App)
 tools.env.inject()
 
-describe('movie', () => {
-    test('create a movie', async () => {
-        const bundle = { inputData: { title: 'hello', year: 2020 } }
-        const result = await appTester(
-            App.creates.movie.operation.perform,
-            bundle
-        )
-        expect(result).toMatchObject({
-            title: 'hello',
-            year: 2020
-        })
+const FILE_URL = path.resolve('test/rss/test-image.jpg')
+
+describe('ocr', () => {
+    test('call ocr model', async () => {
+        const bundle = {
+            inputData: {
+                filename: 'test-image.jpg',
+                file: FILE_URL
+            }
+        }
+
+        const result = await appTester(App.creates.ocr.operation.perform, bundle)
+
+        expect(result).toHaveProperty('pages')
     })
 })

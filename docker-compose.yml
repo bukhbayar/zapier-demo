@@ -1,0 +1,26 @@
+version: "3.4"
+services:
+  base: &base
+    build:
+      context: .
+    volumes:
+      - .:/opt/code
+      - node_modules:/opt/code/node_modules:delegated
+      - ~/.zapierrc:/root/.zapierrc
+    environment:
+      ZAPIER_DEPLOY_KEY: ${ZAPIER_DEPLOY_KEY}
+
+  zapier-test:
+    <<: *base
+    command: sh -c "yarn test"
+
+  zapier-deploy:
+    <<: *base
+    command: sh -c "yarn push"
+
+  lint:
+    <<: *base
+    command: sh -c "yarn lint"
+
+volumes:
+  node_modules:

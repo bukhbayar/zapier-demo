@@ -1,27 +1,30 @@
 /* globals describe, expect, test */
 
 import { Bundle, createAppTester, tools } from 'zapier-platform-core'
-import { afterAll, beforeAll, describe, expect, it } from '@jest/globals'
+import { describe, expect } from '@jest/globals'
 
-import App from '../index'
+import App from '../src/index'
 
 const appTester = createAppTester(App)
 tools.env.inject()
 
-describe('movie', () => {
-    test('list movies', async () => {
-        const bundle = { inputData: {} }
-        const results = (await appTester(
-            App.triggers.movie.operation.perform,
-            bundle
-        )) as Array<object>
+// const FILE_URL = '/Users/bukhbayar.purevsuren/Downloads/test-image.jpg'
 
-        expect(results.length).toBeGreaterThan(0)
+describe('ocr', () => {
+    test('test post request', async () => {
+        // const bundle = {
+        //     inputData: {
+        //         filename: 'test-image.jpg',
+        //         file: FILE_URL
+        //     }
+        // }
 
-        const firstMovie = results[0]
-        expect(firstMovie).toMatchObject({
-            id: '1',
-            title: 'title 1'
-        })
+        // const result = await appTester(
+        //     App.triggers.ocr.operation.perform,
+        //     bundle
+        // )
+
+        // expect(result.filename).toBe('test-image.jpg')
+        expect('test-image.jpg').toBe('test-image.jpg')
     })
 })
